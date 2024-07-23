@@ -101,7 +101,7 @@
       "zeroalltabindexes": true
     },
     "Author": "",
-    "BindingErrorCount": 744,
+    "BindingErrorCount": 670,
     "ContainsThirdPartyPcfControls": false,
     "DefaultConnectedDataSourceMaxGetRowsCount": 500,
     "DocumentAppType": "DesktopOrTablet",
@@ -136,7 +136,6 @@
   },
   "ScreenOrder": [
     "ScreenGlobalFinance",
-    "ScreenGlobalFinanceForm",
     "ScreenReports",
     "ScreenSettings",
     "ScreenParametricDeliveredUnit",
