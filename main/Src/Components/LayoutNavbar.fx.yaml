@@ -1,0 +1,202 @@
+LayoutNavbar As CanvasComponent:
+    Fill: =RGBA(68, 25, 126, 1)
+    Height: =App.Height
+    ItemsBlocked: =false
+    NavItems: |-
+        =Table(
+            {
+                Title: "GLOBAL FINANCE",
+                Screen: App.ActiveScreen,
+                Icon: Icon.Add,
+                IsVisible: true
+            },
+            {
+                Title: "FINANCE BY DU",
+                Screen: App.ActiveScreen,
+                Icon: Icon.AddUser,
+                IsVisible: true
+            },
+            {
+                Title: "PARAMETERS",
+                Screen: App.ActiveScreen,
+                Icon: Icon.Alarm,
+                IsVisible: true
+            }
+        )
+    SetupNavItems: |-
+        =Table(
+            {
+                Title: "REPORTS",
+                Screen: App.ActiveScreen,
+                Icon: Icon.Blocked,
+                IsVisible: true
+            },
+            {
+                Title: "SETTINGS",
+                Screen: App.ActiveScreen,
+                Icon: Icon.Settings,
+                IsVisible: true
+            }
+        )
+    Width: =262
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    IconLogo As image:
+        BorderColor: =RGBA(0, 18, 107, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =57
+        Image: ='logo-bc'
+        PaddingRight: =0.00
+        PaddingTop: =0.00
+        Width: =230
+        X: =20
+        Y: =20
+        ZIndex: =2
+
+    ItemsGallery As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 18, 107, 1)
+        DelayItemLoading: =true
+        DisplayMode: =If(LayoutNavbar.ItemsBlocked, DisplayMode.View, DisplayMode.Edit)
+        Height: =479
+        Items: =Filter(LayoutNavbar.NavItems,  IsVisible = true)
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplateFill: =If(ThisItem.Screen=App.ActiveScreen, RGBA(136, 91, 196, 1), RGBA(68, 25, 126, 1))
+        TemplatePadding: =0
+        TemplateSize: =68
+        Width: =262
+        Y: =190
+        ZIndex: =3
+
+        IconNavItem As icon.Add:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Height: =24
+            Icon: =ThisItem.Icon
+            OnSelect: =Navigate(ThisItem.Screen)
+            Visible: =ThisItem.IsVisible
+            Width: =24
+            X: =14
+            Y: =20
+            ZIndex: =1
+
+        LabelNavItem As label:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Lighter
+            Height: =28
+            LineHeight: =1.68
+            OnSelect: =Navigate(ThisItem.Screen)
+            Text: =ThisItem.Title
+            Visible: =ThisItem.IsVisible
+            Width: =200
+            X: =38
+            Y: =20
+            ZIndex: =2
+
+        ButtonNavItem As button:
+            Color: =RGBA(0, 0, 0, 0)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            FontWeight: =FontWeight.Semibold
+            Height: =68
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =
+            OnSelect: =Navigate(ThisItem.Screen, ScreenTransition.Fade)
+            PressedFill: =
+            Size: =15
+            Text: =
+            Visible: =ThisItem.IsVisible
+            Width: =262
+            ZIndex: =3
+
+    IconLineSeparator As rectangle:
+        BorderColor: =RGBA(0, 18, 107, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =1
+        Width: =Parent.Width
+        Y: =712
+        ZIndex: =4
+
+    SetupNavGallery As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 18, 107, 1)
+        DelayItemLoading: =true
+        DisplayMode: =If(LayoutNavbar.ItemsBlocked, DisplayMode.View, DisplayMode.Edit)
+        Height: =245
+        Items: =Filter(LayoutNavbar.SetupNavItems, IsVisible = true)
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplateFill: =If(ThisItem.Screen=App.ActiveScreen, RGBA(136, 91, 196, 1), RGBA(68, 25, 126, 1))
+        TemplatePadding: =0
+        TemplateSize: =67
+        Width: =Parent.Width
+        Y: =713
+        ZIndex: =5
+
+        IconSetupNavItem As icon.Add:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Height: =24
+            Icon: =ThisItem.Icon
+            OnSelect: =Navigate(ThisItem.Screen)
+            Width: =24
+            X: =17
+            Y: =18
+            ZIndex: =1
+
+        LabelSetupNavItem As label:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Lighter
+            Height: =17
+            LineHeight: =1.6
+            OnSelect: =Navigate(ThisItem.Screen)
+            Text: =ThisItem.Title
+            X: =41
+            Y: =21
+            ZIndex: =2
+
+        ButtonSetupNavItem As button:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            FontWeight: =FontWeight.Semibold
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =
+            OnSelect: =Navigate(ThisItem.Screen, ScreenTransition.Fade)
+            PressedFill: =
+            Size: =15
+            Text: =
+            Width: =252
+            Y: =18
+            ZIndex: =3
+
+    TextCanvas2 As Text:
+        Align: ='TextCanvas.Align'.Center
+        BorderStyle: =""
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =RGBA(214, 210, 210, 1)
+        Height: =23
+        Size: =12
+        Text: ="V 1.0.0.1.20240627"
+        Weight: ='TextCanvas.Weight'.Semibold
+        Width: =137
+        Wrap: =true
+        X: =62
+        Y: =946
+        ZIndex: =6
+

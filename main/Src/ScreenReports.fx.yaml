@@ -1,0 +1,360 @@
+ScreenReports As screen:
+    Fill: =COLOR_GRAY_3
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnHidden: |-
+        =UpdateContext({
+            ResetInputs: false
+        });
+        UpdateContext({
+            ResetInputs: true
+        });
+        CheckboxCanvas1.Checked = false;
+    OnVisible: =true; Refresh(UserDeliveredUnit);
+
+    Label4 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Font: =App.Theme.Font
+        Size: =13
+        Text: |-
+            ="Screen Reports
+            "
+        X: =834
+        Y: =459
+        ZIndex: =1
+
+    LayoutNavbar_2 As LayoutNavbar:
+        NavItems: =colNav
+        SetupNavItems: =colNavSetup
+        ZIndex: =2
+
+    LayoutHeader_2 As LayoutHeader:
+        titleScreen: ="REPORTS"
+        X: =262
+        ZIndex: =3
+
+    ContainerMain As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semilight
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =869
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =1190
+        X: =291
+        Y: =93
+        ZIndex: =4
+
+        Container28 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =307
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =1060
+            X: =68
+            Y: =130
+            ZIndex: =2
+
+            "GalleryScreenReports As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Height: =256
+                Items: =Filter(UserDeliveredUnit,  User.Email = User().Email)
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: =52
+                Width: =Parent.Width
+                WrapCount: =5
+                Y: =51
+                ZIndex: =1
+
+                CheckboxCanvas1 As Checkbox:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =46
+                    Label: |-
+                        =ThisItem.'DeliveredUnitID: Name (DeliveredUnitID_x003a__x0020_Nam)'.Value
+                    OnCheck: =false
+                    OnSelect: =Select(Parent)
+                    OnUncheck: =false
+                    Width: =210
+                    X: =0
+                    Y: =4
+                    ZIndex: =5
+
+            Label28 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                Height: =35
+                Size: =16
+                Text: ="Delivery Units"
+                Width: =193
+                X: =12
+                Y: =8
+                ZIndex: =2
+
+        Container30 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =71
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =1060
+            X: =68
+            Y: =40
+            ZIndex: =3
+
+            Label29 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                Size: =16
+                Text: ="Fiscal Year"
+                X: =12
+                Y: =12
+                ZIndex: =1
+
+            Dropdown3 As dropdown:
+                AllowEmptySelection: =true
+                BorderColor: =App.Theme.Colors.Darker40
+                ChevronBackground: =App.Theme.Colors.Primary
+                ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                ChevronHoverBackground: =App.Theme.Colors.Darker10
+                ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                Default: =" "
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Font: =App.Theme.Font
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =App.Theme.Colors.Lighter70
+                Items: =FiscalYear
+                OnChange: =true
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =App.Theme.Colors.Darker30
+                Reset: =ResetInputs
+                SelectionFill: =App.Theme.Colors.Primary
+                Size: =13
+                X: =162
+                Y: =12
+                ZIndex: =2
+
+            Icon8_8 As icon.Reload:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =App.Theme.Colors.Darker30
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =25
+                Icon: =Icon.Reload
+                OnSelect: |-
+                    =Refresh(UserDeliveredUnit);
+                    Refresh(FiscalYear);
+                Width: =25
+                X: =(Parent.Width - Self.Width) / 2
+                Y: =(Parent.Height - Self.Height) / 2
+                ZIndex: =3
+
+        ButtonCanvas8 As Button:
+            DisplayMode: =DisplayMode.Edit
+            Height: =46
+            OnSelect: |
+                =If(
+                    IsBlank(Dropdown3.SelectedText.Value),
+                    Notify(
+                        "A valid Fiscal Year is required.",
+                        NotificationType.Warning
+                    ),
+                    If(
+                        CountRows(
+                            Filter(
+                                GalleryScreenReports.AllItems,
+                                CheckboxCanvas1.Checked
+                            )
+                        ) <> 0,
+                        UpdateContext({
+                            OpenModalReport: true
+                        }),
+                        Notify(
+                            "At least one Delivery Unit must be selected.",
+                            NotificationType.Warning
+                        )
+                    )
+                );
+            Text: ="EXPORT TO XLSX"
+            Width: =211
+            X: =456
+            Y: =516
+            ZIndex: =4
+
+    ContainerModal_5 As groupContainer.manualLayoutContainer:
+        ContentLanguage: =
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(68, 25, 126, 0.4)
+        Height: =982
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =OpenModalReport
+        Width: =1512
+        ZIndex: =5
+
+        Button3_5 As button:
+            BorderColor: =App.Theme.Colors.Primary
+            BorderThickness: =0
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Semibold
+            Height: =982
+            HoverBorderColor: =App.Theme.Colors.Darker10
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =
+            OnSelect: |-
+                =UpdateContext({
+                    OpenModalReport: false
+                })
+            PressedBorderColor: =App.Theme.Colors.Darker40
+            PressedColor: =Self.Color
+            PressedFill: =
+            Size: =15
+            Text: =""
+            Width: =1512
+            ZIndex: =1
+
+        Container7_5 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Bold
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =345
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =15
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =752
+            X: =432
+            Y: =260
+            ZIndex: =2
+
+            Label25_1 As label:
+                Align: =Align.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =COLOR_GRAY_DARK_TEXT
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Size: =12
+                Text: |-
+                    =With(
+                        {
+                            BlankCategory: Filter(
+                                Category,
+                                CategoryType = "OPEX" || CategoryType = "CAPEX"
+                            ),
+                            WithoutCategoryType: Filter(
+                                Category,
+                                CategoryType = Blank() && CategoryType = Blank()
+                            )
+                        },
+                        If(
+                            CountRows(WithoutCategoryType) = 0,
+                            "Remember that the requested report will be sent to your email address. ",
+                            "These categories are not assigned to opex or capex and therefore will not appear in the report: " & Concat(
+                                WithoutCategoryType,
+                                'Name ({Name})' & If(
+                                    CountRows(WithoutCategoryType) = 1,
+                                    "",
+                                    ","
+                                )
+                            )
+                        )
+                    )
+                Width: =Parent.Width
+                ZIndex: =1
+
+            Container19_2 As groupContainer.horizontalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0.25
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =15
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =15
+                PaddingRight: =15
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =2
+
+                ButtonCanvasScreenFinanceByDuDetailExpense6_1 As Button:
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |-
+                        =UpdateContext({
+                            OpenModalReport: false
+                        })
+                    Text: ="CANCEL"
+                    Width: =165
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                ButtonCanvasScreenFinanceByDuDetailExpense7_1 As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |
+                        ='[BudgetControl]ReportByDu'.Run(
+                            JSON(
+                                ForAll(
+                                    Filter(
+                                        GalleryScreenReports.AllItems,
+                                        CheckboxCanvas1.Checked
+                                    ),
+                                    {
+                                        ID: ThisRecord.DeliveredUnitID.Id,
+                                        Name: ThisRecord.'DeliveredUnitID: Name (DeliveredUnitID_x003a__x0020_Nam)'.Value
+                                    }
+                                ),
+                                JSONFormat.IndentFour
+                            ),
+                            Dropdown3.Selected.ID,
+                            User().Email,
+                            Dropdown3.Selected.StartFiscalYear,
+                            Dropdown3.Selected.EndFiscalYear
+                        );
+                        UpdateContext({OpenModalReport: false});
+                        Notify("Report has been sent to your email", NotificationType.Success);
+                    Text: ="REQUEST"
+                    Width: =165
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+

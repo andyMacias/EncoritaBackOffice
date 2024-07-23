@@ -1,0 +1,935 @@
+ScreenParametricFiscalYear As screen:
+    Fill: =COLOR_GRAY_3
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        ={ Screen: SCREEN_BUDGET_CONTROL_PARAMETRIC_FISCAL_YEAR, Claim: ACTION_VIEW } in CurrentPermission
+
+    LayoutNavbar_5 As LayoutNavbar:
+        NavItems: =colNav
+        SetupNavItems: =colNavSetup
+
+    LayoutHeader_5 As LayoutHeader:
+        titleScreen: ="Par Fiscal Year"
+        X: =262
+        ZIndex: =2
+
+    ContainerHeader_2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semilight
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =869
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =1190
+        X: =291
+        Y: =93
+        ZIndex: =3
+
+        ContainerActions_2 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =168
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: =16
+            LayoutJustifyContent: =LayoutJustifyContent.End
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =15
+            PaddingRight: =15
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Width: =Parent.Width
+            ZIndex: =1
+
+            Container4_8 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                BorderColor: =COLOR_PRIMARY_PURPLE
+                BorderThickness: =1
+                FillPortions: =0.4
+                Height: =Parent.Height * 30%
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
+                Width: |
+                    =50
+                ZIndex: =2
+
+                Label1_8 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =COLOR_PRIMARY_PURPLE
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Size: =12
+                    Text: ="CREATE NEW FISCAL YEAR"
+                    Width: =Parent.Width
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+                Button1_8 As button:
+                    BorderColor: =App.Theme.Colors.Primary
+                    DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.Height
+                    HoverBorderColor: =App.Theme.Colors.Darker10
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0.1)
+                    OnSelect: |+
+                        =ResetForm(Form1_2);
+                        NewForm(Form1_2);
+                        UpdateContext({
+                            OpenModal: true
+                        });
+                        
+                    PressedBorderColor: =App.Theme.Colors.Darker40
+                    PressedColor: =Self.Color
+                    PressedFill: =App.Theme.Colors.Darker40
+                    RadiusBottomLeft: =25
+                    RadiusBottomRight: =25
+                    RadiusTopLeft: =25
+                    RadiusTopRight: =25
+                    Size: =15
+                    Text: =
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+        ContainerColumns_2 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =88
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            Y: =168
+            ZIndex: =2
+
+            Container6_13 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =0.5
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =1
+
+                Label3_11 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="ID"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_14 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                Label3_12 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =37
+                    Text: ="Start Fiscal Year"
+                    Width: =161
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_15 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =3
+
+                Label3_13 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="End Fiscal Year"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_16 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =5
+
+                Label3_14 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="Description"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_17 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =7
+
+                Label3_15 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="Modified At"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_18 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =9
+
+                Icon8_4 As icon.Reload:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =App.Theme.Colors.Darker30
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =25
+                    Icon: =Icon.Reload
+                    OnSelect: =Refresh(FiscalYear);
+                    Width: =25
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+        "Gallery2_2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            BorderColor: =App.Theme.Colors.Darker40
+            DelayItemLoading: =true
+            Height: =584
+            Items: =FiscalYear
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =52
+            Transition: =Transition.Push
+            Width: =Parent.Width
+            Y: =256
+            ZIndex: =3
+
+            Title2_9 As label:
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =24
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.ID
+                VerticalAlign: =VerticalAlign.Top
+                Width: =47
+                X: =30
+                Y: |
+                    =(Parent.TemplateHeight - Self.Height) / 2
+                ZIndex: =2
+
+            NextArrow1_2 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(166, 166, 166, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =50
+                Icon: =Icon.ChevronRight
+                OnSelect: |-
+                    =EditForm(Form1_2);
+                    UpdateContext({
+                        OpenModal: true
+                    })
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                Tooltip: ="View item details"
+                Width: =50
+                X: =Parent.TemplateWidth - Self.Width - 12
+                Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                ZIndex: =4
+
+            Separator1_2 As rectangle:
+                BorderColor: =App.Theme.Colors.Darker40
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =8
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Rectangle1_2 As rectangle:
+                BorderColor: =App.Theme.Colors.Darker40
+                Fill: =App.Theme.Colors.Darker30
+                Height: =Parent.TemplateHeight - Separator1_2.Height
+                OnSelect: =Select(Parent)
+                Visible: =ThisItem.IsSelected
+                Width: =4
+                ZIndex: =6
+
+            Title2_10 As label:
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =24
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =Text(ThisItem.StartFiscalYear, "mmm")&"-"&Year(ThisItem.StartFiscalYear)
+                VerticalAlign: =VerticalAlign.Top
+                Width: =162
+                X: =121
+                Y: =14
+                ZIndex: =7
+
+            Title2_11 As label:
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =24
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =Text(ThisItem.EndFiscalYear, "mmm")&"-"&Year(ThisItem.EndFiscalYear)
+                VerticalAlign: =VerticalAlign.Top
+                Width: =162
+                X: =378
+                Y: =14
+                ZIndex: =8
+
+            Title2_12 As label:
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =24
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Description
+                VerticalAlign: =VerticalAlign.Top
+                Width: =162
+                X: =647
+                Y: =14
+                ZIndex: =9
+
+            Rectangle2_2 As rectangle:
+                BorderColor: =App.Theme.Colors.Darker40
+                Fill: =COLOR_GRAY_3
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =51
+                ZIndex: =11
+
+            Title2_13 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                Height: =24
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: =ThisItem.Modified
+                Width: =181
+                X: =878
+                Y: =14
+                ZIndex: =12
+
+    ContainerModal_2 As groupContainer.manualLayoutContainer:
+        ContentLanguage: =
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(68, 25, 126, 0.4)
+        Height: =982
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =OpenModal
+        Width: =1512
+        ZIndex: =4
+
+        Container7_2 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Bold
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =App.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =15
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            X: =1012
+            ZIndex: =1
+
+            Container10_2 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.Light
+                FillPortions: =3
+                Height: =250
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =1
+
+                Label2_2 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =COLOR_GRAY_DARK_TEXT
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    Height: =47
+                    Size: =24
+                    Text: ="Form Fiscal Year"
+                    Width: =271
+                    X: =40
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+                Icon2_2 As icon.Cancel:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =39
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =ResetForm(Form1_2);
+                        UpdateContext({
+                            OpenModal: false
+                        })
+                    Width: =22
+                    X: =412
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =2
+
+            Container11_2 As groupContainer.manualLayoutContainer:
+                BorderStyle: =BorderStyle.None
+                FillPortions: =20
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                Form1_2 As form:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DataSource: =FiscalYear
+                    DefaultMode: =FormMode.New
+                    Height: =628
+                    Item: =Gallery2_2.Selected
+                    NumberOfColumns: =1
+                    Width: =500
+                    Y: =40
+                    ZIndex: =1
+
+                    Description_DataCard3 As typedDataCard.textualMultiLineEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Description"
+                        Default: =ThisItem.Description
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@FiscalYear],DataSourceInfo.DisplayName,Description)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =DataCardValue5.Text
+                        Width: =500
+                        X: =0
+                        Y: =2
+                        ZIndex: =1
+
+                        DataCardKey7 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue5 As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            BorderThickness: =2
+                            Color: =RGBA(0, 0, 0, 1)
+                            Default: =Parent.Default
+                            DelayOutput: =true
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            FocusedBorderThickness: =4
+                            Font: =App.Theme.Font
+                            Height: =80
+                            HoverBorderColor: =App.Theme.Colors.Darker40
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            MaxLength: =20
+                            Mode: =TextMode.MultiLine
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =13
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey7.Y + DataCardKey7.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessage7 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue5.Y + DataCardValue5.Height
+                            ZIndex: =3
+
+                        StarVisible7 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey7.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey7.Y
+                            ZIndex: =4
+
+                    StartFiscalYear_DataCard1 As typedDataCard.dateEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="StartFiscalYear"
+                        Default: =ThisItem.StartFiscalYear
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@FiscalYear],DataSourceInfo.DisplayName,StartFiscalYear)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =99
+                        Required: =true
+                        Update: =Dropdown1.Selected.FullDate
+                        Width: =500
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                        DataCardKey5 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        ErrorMessage5 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =89
+                            ZIndex: =3
+
+                        StarVisible5 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey5.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey5.Y
+                            ZIndex: =4
+
+                        Dropdown1 As dropdown:
+                            AllowEmptySelection: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                            Default: |-
+                                =If(
+                                    Form1_2.DisplayMode = DisplayMode.Edit,
+                                    Text(
+                                        Parent.Default,
+                                        "mmm"
+                                    ) & "-" & Year(Parent.Default),
+                                    ""
+                                )
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Font: =App.Theme.Font
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =ColMonthYear
+                            PressedColor: =RGBA(255, 255, 255, 1)
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SelectionFill: =App.Theme.Colors.Primary
+                            Size: =13
+                            Width: =440
+                            X: =30
+                            Y: =46
+                            ZIndex: =5
+
+                    EndFiscalYear_DataCard1 As typedDataCard.dateEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="EndFiscalYear"
+                        Default: =ThisItem.EndFiscalYear
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@FiscalYear],DataSourceInfo.DisplayName,EndFiscalYear)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =99
+                        Required: =true
+                        Update: =Dropdown2.Selected.EndDate
+                        Width: =500
+                        X: =0
+                        Y: =1
+                        ZIndex: =2
+
+                        DataCardKey6 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        ErrorMessage6 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: |-
+                                =If(Parent.Error,
+                                    Parent.Error,
+                                    If(Len(Dropdown1.Selected.MonthYear) > 0 && Len(Dropdown2.Selected.MonthYear),
+                                        If(Dropdown1.Selected.Year >= Dropdown2.Selected.Year, "Year must be greater than StartFiscalYear value.", ""),
+                                        ""
+                                    )
+                                )
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =89
+                            ZIndex: =3
+
+                        StarVisible6 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey6.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey6.Y
+                            ZIndex: =4
+
+                        Dropdown2 As dropdown:
+                            AllowEmptySelection: =true
+                            BorderColor: =App.Theme.Colors.Darker40
+                            ChevronBackground: =App.Theme.Colors.Primary
+                            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+                            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+                            ChevronHoverBackground: =App.Theme.Colors.Darker10
+                            ChevronHoverFill: =RGBA(255, 255, 255, 1)
+                            Default: =Text(Parent.Default,"mmm")&"-"&Year(Parent.Default)
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Font: =App.Theme.Font
+                            Height: =38
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            Items: =ColMonthYear
+                            PressedColor: =RGBA(255, 255, 255, 1)
+                            PressedFill: =App.Theme.Colors.Darker30
+                            SelectionFill: =App.Theme.Colors.Primary
+                            Size: =13
+                            Width: =440
+                            X: =30
+                            Y: =47
+                            ZIndex: =5
+
+            Container4_11 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                BorderColor: =COLOR_PRIMARY_PURPLE
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =1
+                Height: =Parent.Height * 30%
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
+                Width: =Parent.Width
+                ZIndex: =3
+
+                Button1_11 As button:
+                    BorderColor: =App.Theme.Colors.Primary
+                    DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =COLOR_PRIMARY_PURPLE
+                    Font: =Font.Lato
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.Height
+                    HoverBorderColor: =
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =RGBA(109, 49, 162, 1)
+                    OnSelect: |-
+                        =If(
+                            !IsBlank(Form1_2),
+                            UpdateContext({OpenModal: false});
+                            SubmitForm(Form1_2);
+                            Notify(
+                                "Data has been sent",
+                                NotificationType.Success
+                            );
+                            ResetForm(Form1_2);
+                            Refresh(FiscalYear)
+                        )
+                    PressedBorderColor: =
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =RGBA(109, 49, 162, 1)
+                    RadiusBottomLeft: =25
+                    RadiusBottomRight: =25
+                    RadiusTopLeft: =25
+                    RadiusTopRight: =25
+                    Size: =14
+                    Text: ="SAVE"
+                    Width: =200
+                    X: =28
+                    ZIndex: =2
+
+                Button1_15 As button:
+                    BorderColor: =App.Theme.Colors.Primary
+                    Color: =RGBA(77, 77, 77, 1)
+                    DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Font: =Font.Lato
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.Height
+                    HoverBorderColor: =
+                    HoverColor: =RGBA(149, 149, 149, 1)
+                    HoverFill: =RGBA(237, 237, 237, 1)
+                    OnSelect: |
+                        =With(
+                            {
+                                ExistBudgets: Filter(
+                                    Budget,
+                                    FiscalYearID.Value = Text(Gallery2_2.Selected.ID)
+                                )
+                            },
+                            If(
+                                CountRows(ExistBudgets) = 0,
+                                UpdateContext({OpenModal: false});
+                                Remove(
+                                    FiscalYear,
+                                    Gallery2_2.Selected
+                                );
+                                Notify(
+                                    "It has been deleted successfully",
+                                    NotificationType.Information
+                                );
+                                ResetForm(Form1_2);
+                                Refresh(FiscalYear);
+                                CountRows(ExistBudgets) <> 0,
+                                UpdateContext({OpenModal: false});
+                                Notify(
+                                    "This Fiscal year cannot be deleted because it has Budgets recorded.",
+                                    NotificationType.Information
+                                );
+                            )
+                        );
+                    PressedBorderColor: =
+                    PressedColor: =RGBA(149, 149, 149, 1)
+                    PressedFill: =RGBA(109, 49, 162, 1)
+                    RadiusBottomLeft: =25
+                    RadiusBottomRight: =25
+                    RadiusTopLeft: =25
+                    RadiusTopRight: =25
+                    Size: =14
+                    Text: ="DELETE"
+                    Visible: =If(Form1_2.DisplayMode = DisplayMode.Edit, true, false)
+                    Width: =200
+                    X: =272
+                    ZIndex: =3
+
+        Button3_2 As button:
+            BorderColor: =App.Theme.Colors.Primary
+            BorderThickness: =0
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Semibold
+            Height: =982
+            HoverBorderColor: =App.Theme.Colors.Darker10
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =
+            OnSelect: |-
+                =ResetForm(Form1_2);
+                UpdateContext({
+                    OpenModal: false
+                })
+            PressedBorderColor: =App.Theme.Colors.Darker40
+            PressedColor: =Self.Color
+            PressedFill: =
+            Size: =15
+            Text: =""
+            Width: =1012
+            ZIndex: =2
+

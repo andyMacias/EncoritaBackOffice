@@ -1,0 +1,16 @@
+{
+  "Themes": [
+    {
+      "EntityName": "PowerAppsTheme",
+      "ThemeName": "PowerAppsTheme"
+    },
+    {
+      "BasePaletteColor": "#44197E",
+      "EntityName": "BudgetControlTheme",
+      "Font": "Segoe UI",
+      "HueTorsion": 0,
+      "ThemeName": "BudgetControlTheme",
+      "Vibrancy": 0
+    }
+  ]
+}

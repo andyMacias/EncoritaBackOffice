@@ -1,0 +1,23 @@
+ScreenSettings As screen:
+    Fill: =COLOR_GRAY_3
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    LayoutNavbar_3 As LayoutNavbar:
+        NavItems: =colNav
+        SetupNavItems: =colNavSetup
+
+    Label6 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Font: =App.Theme.Font
+        Size: =13
+        Text: ="Screen settings"
+        X: =812
+        Y: =471
+        ZIndex: =2
+
+    LayoutHeader_3 As LayoutHeader:
+        X: =262
+        ZIndex: =3
+

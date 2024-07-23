@@ -1,0 +1,941 @@
+ScreenAuthorization As screen:
+    Fill: =COLOR_GRAY_3
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        ={ Screen: SCREEN_BUDGET_CONTROL_AUTHORIZATION, Claim: ACTION_VIEW } in CurrentPermission
+
+    LayoutNavbar_15 As LayoutNavbar:
+        NavItems: =colNav
+        SetupNavItems: =colNavSetup
+
+    Label6_1 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Font: =App.Theme.Font
+        Size: =13
+        Text: ="Screen settings"
+        X: =812
+        Y: =471
+        ZIndex: =2
+
+    LayoutHeader_15 As LayoutHeader:
+        titleScreen: ="Authorization / Role"
+        X: =262
+        ZIndex: =3
+
+    ContainerHeader_6 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semilight
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =869
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =1190
+        X: =291
+        Y: =93
+        ZIndex: =4
+
+        ContainerActions_6 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =168
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: =16
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =15
+            PaddingRight: =15
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Width: =Parent.Width
+            ZIndex: =1
+
+            TextSearch_4 As text:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderThickness: =2
+                Color: =RGBA(0, 0, 0, 1)
+                Default: =""
+                DelayOutput: =true
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FocusedBorderThickness: =4
+                Font: =App.Theme.Font
+                Height: =Parent.Height * 40%
+                HintText: ="Search by title"
+                HoverBorderColor: =App.Theme.Colors.Darker40
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =App.Theme.Colors.Lighter70
+                OnChange: =
+                ZIndex: =1
+
+            Container4_7 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                BorderColor: =COLOR_PRIMARY_PURPLE
+                BorderThickness: =1
+                FillPortions: =0.5
+                Height: =Parent.Height * 30%
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
+                Width: |
+                    =50
+                ZIndex: =2
+
+                Label1_7 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =COLOR_PRIMARY_PURPLE
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Size: =12
+                    Text: ="CREATE NEW ROLE"
+                    Width: =Parent.Width
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+                Button1_27 As button:
+                    BorderColor: =App.Theme.Colors.Primary
+                    DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.Height
+                    HoverBorderColor: =App.Theme.Colors.Darker10
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0.1)
+                    OnSelect: |
+                        =ResetForm(FormRoleCreate);
+                        NewForm(FormRoleCreate);
+                        UpdateContext({
+                            OpenModal: true
+                        });
+                    PressedBorderColor: =App.Theme.Colors.Darker40
+                    PressedColor: =Self.Color
+                    PressedFill: =App.Theme.Colors.Darker40
+                    RadiusBottomLeft: =25
+                    RadiusBottomRight: =25
+                    RadiusTopLeft: =25
+                    RadiusTopRight: =25
+                    Size: =15
+                    Text: =
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+        ContainerColumns_8 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =88
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            Y: =168
+            ZIndex: =2
+
+            Container6_130 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =0.5
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =1
+
+                Label3_116 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="ID"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_131 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                Label3_117 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="Title"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_132 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =3
+
+                Label3_118 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="Description"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_133 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2.5
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =4
+
+                Label3_119 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="Description"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_134 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =5
+
+                Label3_120 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="Modified by"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_135 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                FillPortions: =2
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =6
+
+                Label3_121 As label:
+                    Align: =Align.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Text: ="Created By"
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+            Container6_136 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                ContentLanguage: =
+                Height: =Parent.Height
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =7
+
+        "GalleryAuthorizationRole As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            BorderColor: =App.Theme.Colors.Darker40
+            DelayItemLoading: =true
+            Height: =584
+            Items: =Filter(Role, StartsWith(Title, TextSearch_4.Text))
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =52
+            Width: =Parent.Width
+            Y: =256
+            ZIndex: =3
+
+            Title2_20 As label:
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =24
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.ID
+                VerticalAlign: =VerticalAlign.Top
+                Width: =47
+                X: =30
+                Y: |
+                    =(Parent.TemplateHeight - Self.Height) / 2
+                ZIndex: =2
+
+            NextArrow1_8 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(166, 166, 166, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =50
+                Icon: =Icon.Edit
+                OnSelect: |-
+                    =EditForm(FormRoleCreate);
+                    UpdateContext({
+                        OpenModal: true
+                    })
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                Tooltip: ="View item details"
+                Width: =50
+                X: =1038
+                Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                ZIndex: =4
+
+            Separator1_8 As rectangle:
+                BorderColor: =App.Theme.Colors.Darker40
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =8
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - Self.Height
+                ZIndex: =5
+
+            Rectangle1_8 As rectangle:
+                BorderColor: =App.Theme.Colors.Darker40
+                Fill: =App.Theme.Colors.Darker30
+                Height: =Parent.TemplateHeight - Separator1_8.Height
+                OnSelect: =Select(Parent)
+                Visible: =ThisItem.IsSelected
+                Width: =4
+                ZIndex: =6
+
+            Title2_21 As label:
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =24
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Title
+                VerticalAlign: =VerticalAlign.Top
+                Width: =162
+                X: =77
+                Y: =(Parent.TemplateHeight - Self.Height) / 2
+                ZIndex: =7
+
+            Title2_22 As label:
+                Align: =Align.Center
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =24
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Description
+                VerticalAlign: =VerticalAlign.Top
+                Width: =162
+                X: =265
+                Y: =14
+                ZIndex: =8
+
+            Title2_19 As label:
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Font: =App.Theme.Font
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =24
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Description
+                VerticalAlign: =VerticalAlign.Top
+                Width: =162
+                X: =489
+                Y: =10
+                ZIndex: =9
+
+            Image1_5 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =40
+                Image: =ThisItem.'Created By'.Picture
+                OnSelect: =Select(Parent)
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
+                Width: =40
+                X: =972
+                Y: =6
+                ZIndex: =10
+
+            Rectangle2_7 As rectangle:
+                BorderColor: =App.Theme.Colors.Darker40
+                Fill: =COLOR_GRAY_3
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =51
+                ZIndex: =11
+
+            Image1_6 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =40
+                Image: =ThisItem.'Modified By'.Picture
+                OnSelect: =Select(Parent)
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
+                Width: =40
+                X: =776
+                Y: =2
+                ZIndex: =12
+
+            NextArrow1_9 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(166, 166, 166, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =50
+                Icon: =Icon.AddLibrary
+                OnSelect: |-
+                    =Navigate(
+                        ScreenAuthorizationRolePermission,
+                        ScreenTransition.Fade,
+                        {RoleIDSelected: GalleryAuthorizationRole.Selected.ID}
+                    )
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                Tooltip: ="View details Permission"
+                Width: =50
+                X: =1076
+                Y: =1
+                ZIndex: =13
+
+            NextArrow1_12 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(166, 166, 166, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =50
+                Icon: =Icon.AddUser
+                OnSelect: |-
+                    =Navigate(
+                        ScreenAuthorizationRoleUser,
+                        ScreenTransition.Fade,
+                        {RoleIDSelected: GalleryAuthorizationRole.Selected.ID}
+                    )
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
+                Tooltip: ="View item details"
+                Width: =50
+                X: =1111
+                ZIndex: =14
+
+    ContainerModal_3 As groupContainer.manualLayoutContainer:
+        ContentLanguage: =
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(68, 25, 126, 0.4)
+        Height: =982
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =OpenModal
+        Width: =1512
+        ZIndex: =5
+
+        Container7_3 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Bold
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =App.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =15
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            X: =1012
+            ZIndex: =1
+
+            Container10_3 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.Light
+                FillPortions: =3
+                Height: =250
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =1
+
+                Label2_4 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =COLOR_GRAY_DARK_TEXT
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    Height: =65
+                    Size: =23
+                    Text: ="ROLE FORM"
+                    Width: =249
+                    X: =40
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =1
+
+                Icon2_4 As icon.Cancel:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =39
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =UpdateContext({
+                            OpenModal: false
+                        })
+                    Width: =22
+                    X: =412
+                    Y: =(Parent.Height - Self.Height) / 2
+                    ZIndex: =2
+
+            Container11_3 As groupContainer.manualLayoutContainer:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                FillPortions: =20
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                FormRoleCreate As form:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DataSource: =Role
+                    DefaultMode: =FormMode.New
+                    Item: =GalleryAuthorizationRole.Selected
+                    NumberOfColumns: =1
+                    Width: =500
+                    Y: =40
+                    ZIndex: =1
+
+                    Title_DataCard1 As typedDataCard.textualEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Title"
+                        Default: =ThisItem.Title
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Role],DataSourceInfo.DisplayName,Title)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@Role], DataSourceInfo.MaxLength, Title)
+                        Required: =true
+                        Update: =DataCardValue4.Text
+                        Width: =500
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                        DataCardKey4 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue4 As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            BorderThickness: =2
+                            Color: =RGBA(0, 0, 0, 1)
+                            Default: =Parent.Default
+                            DelayOutput: =true
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            FocusedBorderThickness: =4
+                            Font: =App.Theme.Font
+                            HoverBorderColor: =App.Theme.Colors.Darker40
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =13
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey4.Y + DataCardKey4.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessage4 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue4.Y + DataCardValue4.Height
+                            ZIndex: =3
+
+                        StarVisible4 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey4.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey4.Y
+                            ZIndex: =4
+
+                    Description_DataCard2 As typedDataCard.textualEditCard:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="Description"
+                        Default: =ThisItem.Description
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@Role],DataSourceInfo.DisplayName,Description)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@Role], DataSourceInfo.MaxLength, Description)
+                        Required: =false
+                        Update: =DataCardValue6.Text
+                        Width: =500
+                        X: =0
+                        Y: =1
+                        ZIndex: =2
+
+                        DataCardKey8 As label:
+                            AutoHeight: =true
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =34
+                            Size: =13
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        DataCardValue6 As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            BorderThickness: =2
+                            Color: =RGBA(0, 0, 0, 1)
+                            Default: =Parent.Default
+                            DelayOutput: =true
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayMode: =Parent.DisplayMode
+                            FocusedBorderThickness: =4
+                            Font: =App.Theme.Font
+                            HoverBorderColor: =App.Theme.Colors.Darker40
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =App.Theme.Colors.Lighter70
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =13
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardKey8.Y + DataCardKey8.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessage8 As label:
+                            AutoHeight: =true
+                            Color: =RGBA(168, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =DataCardValue6.Y + DataCardValue6.Height
+                            ZIndex: =3
+
+                        StarVisible8 As label:
+                            Align: =Align.Center
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =DataCardKey8.Height
+                            Size: =13
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =DataCardKey8.Y
+                            ZIndex: =4
+
+            Container18_1 As groupContainer.verticalAutoLayoutContainer:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =15
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =15
+                PaddingLeft: =15
+                PaddingRight: =15
+                PaddingTop: =15
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =4
+
+                Button1_30 As button:
+                    BorderColor: =App.Theme.Colors.Primary
+                    DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(109, 49, 162, 1)
+                    FillPortions: =1
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.Height
+                    HoverBorderColor: =App.Theme.Colors.Darker10
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0.1)
+                    LayoutMinWidth: =50
+                    OnSelect: |
+                        =SubmitForm(FormRoleCreate);
+                        UpdateContext({OpenModal: false});
+                        ResetForm(FormRoleCreate);
+                        Refresh(Role);
+                        Notify("Role has been send", NotificationType.Success);
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =App.Theme.Colors.Darker40
+                    PressedColor: =Self.Color
+                    PressedFill: =App.Theme.Colors.Darker40
+                    RadiusBottomLeft: =25
+                    RadiusBottomRight: =25
+                    RadiusTopLeft: =25
+                    RadiusTopRight: =25
+                    Size: =15
+                    Text: ="SEND"
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                Button1_31 As button:
+                    BorderColor: =App.Theme.Colors.Primary
+                    Color: =RGBA(109, 49, 162, 1)
+                    DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(255, 255, 255, 1)
+                    FillPortions: =1
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.Height
+                    HoverBorderColor: =App.Theme.Colors.Darker10
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0.1)
+                    LayoutMinWidth: =50
+                    OnSelect: |
+                        =With(
+                            {
+                                CountRelated: Filter(
+                                    UserRole,
+                                    RoleID.Value = Text(GalleryAuthorizationRole.Selected.ID)
+                                )
+                            },
+                            If(
+                                CountRows(CountRelated) = 0,
+                                Remove(
+                                    Role,
+                                    GalleryAuthorizationRole.Selected
+                                );
+                                ResetForm(FormRoleCreate);
+                                Notify(
+                                    "Role has been deleted",
+                                    NotificationType.Success
+                                );
+                                Refresh(Role);
+                                CountRows(CountRelated) > 0,
+                                Notify(
+                                    $"It cannot be deleted because it has users added to this ROLE. ({GalleryAuthorizationRole.Selected.Title})",
+                                    NotificationType.Information
+                                )
+                            )
+                        );
+                        UpdateContext({OpenModal: false});
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =App.Theme.Colors.Darker40
+                    PressedColor: =Self.Color
+                    PressedFill: =App.Theme.Colors.Darker40
+                    RadiusBottomLeft: =25
+                    RadiusBottomRight: =25
+                    RadiusTopLeft: =25
+                    RadiusTopRight: =25
+                    Size: =15
+                    Text: ="DELETE"
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+        Button3_3 As button:
+            BorderColor: =App.Theme.Colors.Primary
+            BorderThickness: =0
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Semibold
+            Height: =982
+            HoverBorderColor: =App.Theme.Colors.Darker10
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =
+            OnSelect: |-
+                =UpdateContext({
+                    OpenModal: false
+                })
+            PressedBorderColor: =App.Theme.Colors.Darker40
+            PressedColor: =Self.Color
+            PressedFill: =
+            Size: =15
+            Text: =""
+            Width: =1012
+            ZIndex: =2
+

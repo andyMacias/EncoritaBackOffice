@@ -1,0 +1,221 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: |-
+        =// ====================================== COLOR ==========================================
+        COLOR_PRIMARY_PURPLE = RGBA(68, 25, 126, 1);
+        COLOR_PRIMARY_CYAN = RGBA(64, 193, 239, 1);
+        COLOR_PRIMARY_CORAL = RGBA(225, 86, 77, 1);
+        COLOR_PRIMARY_YELLOW = RGBA(250, 190, 0, 1);
+        COLOR_PRIMARY_GREEN = RGBA(143, 199, 69, 1);
+        
+        COLOR_GRAY_DARK = RGBA(38, 36, 41, 1);
+        COLOR_GRAY_DARK_TEXT = RGBA(88, 83, 96, 1);
+        COLOR_GRAY_1 = RGBA(137, 138, 159 ,1);
+        COLOR_GRAY_2 = RGBA(216, 214, 219, 1);
+        COLOR_GRAY_3 = RGBA(242, 241, 243, 1);
+        
+        COLOR_SECONDARY_RED = RGBA(198, 64, 75, 1);
+        COLOR_SECONDARY_ORANGE = RGBA(255, 141, 66, 1);
+        COLOR_SECONDARY_GREEN_2 = RGBA(186, 213, 49, 1);
+        COLOR_SECONDARY_YELLOW_2 = RGBA(252, 239 ,86, 1);
+        COLOR_SECONDARY_PURPLE_2 = RGBA(111, 75, 158, 1);
+        COLOR_SECONDARY_ELECTRIC_BLUE = RGBA(86, 77, 255, 1);
+        COLOR_SECONDARY_BLUE = RGBA(77, 157, 255, 1);
+        COLOR_SECONDARY_CYAN_2 = RGBA(110, 223, 249, 1);
+        
+        // =================================SCREENS ========================
+        SCREEN_BUDGET_CONTROL_GLOBAL_FINANCE = "screen-budget-control.global-finance";
+        SCREEN_BUDGET_CONTROL_DELIVERED_UNIT = "screen-budget-control.delivered-unit";
+        SCREEN_BUDGET_CONTROL_FINANCE_BY_DU = "screen-budget-control.finance-by-du";
+        SCREEN_BUDGET_CONTROL_PARAMETRIC_CATEGORY = "screen-budget-control.parametric-category";
+        SCREEN_BUDGET_CONTROL_PARAMETRIC_DELIVERED_UNIT = "screen-budget-control.parametric-delivered-unit";
+        SCREEN_BUDGET_CONTROL_PARAMETRIC_FISCAL_YEAR = "screen-budget-control.parametric-fiscal-year";
+        SCREEN_BUDGET_CONTROL_AUTHORIZATION = "screen-budget-control.authorization";
+        // ================================ CLAIMS =========================
+        ACTION_VIEW = "action-view";
+        
+        
+        // ======================== Navigation ==================================================
+        colNav = Table(
+            {
+                Title: "GLOBAL FINANCE",
+                Screen: ScreenGlobalFinance,
+                Icon: Icon.AddDocument,
+                IsVisible: { Screen: SCREEN_BUDGET_CONTROL_GLOBAL_FINANCE, Claim: ACTION_VIEW } in CurrentPermission
+            },
+            {
+                Title: "DU BUDGET",
+                Screen: ScreenDeliveredUnitBudget,
+                Icon: Icon.AddDocument,
+                IsVisible: { Screen: SCREEN_BUDGET_CONTROL_DELIVERED_UNIT, Claim: ACTION_VIEW } in CurrentPermission
+            },
+            {
+                Title: "FINANCE BY DU",
+                Screen: ScreenFinanceByDu,
+                Icon: Icon.AddDocument,
+                IsVisible: { Screen: SCREEN_BUDGET_CONTROL_FINANCE_BY_DU, Claim: ACTION_VIEW } in CurrentPermission
+            },
+            {
+                Title: "PAR CATEGORY",
+                Screen: ScreenParametricCategory,
+                Icon: Icon.Database,
+                IsVisible: { Screen: SCREEN_BUDGET_CONTROL_PARAMETRIC_CATEGORY, Claim: ACTION_VIEW } in CurrentPermission
+            },
+            {
+                Title: "PAR DELIVERED UNIT",
+                Screen: ScreenParametricDeliveredUnit,
+                Icon: Icon.Database,
+                IsVisible: { Screen: SCREEN_BUDGET_CONTROL_PARAMETRIC_DELIVERED_UNIT, Claim: ACTION_VIEW } in CurrentPermission
+            },
+            {
+                Title: "PAR FISCAL YEAR",
+                Screen: ScreenParametricFiscalYear,
+                Icon: Icon.Database,
+                IsVisible: { Screen: SCREEN_BUDGET_CONTROL_PARAMETRIC_FISCAL_YEAR, Claim: ACTION_VIEW } in CurrentPermission
+            }
+        );
+        
+        colNavSetup = Table(
+            {
+                Title: "REPORTS",
+                Screen: ScreenReports,
+                Icon: Icon.AddDocument,
+                IsVisible: true
+            },
+            {
+                Title: "AUTH",
+                Screen: ScreenAuthorization,
+                Icon: Icon.AddUser,
+                IsVisible: { Screen: SCREEN_BUDGET_CONTROL_AUTHORIZATION, Claim: ACTION_VIEW } in CurrentPermission
+            },
+            {
+                Title: "SETTINGS",
+                Screen: ScreenSettings,
+                Icon: Icon.Settings,
+                IsVisible: true
+            }
+        );
+    OnError: |-
+        =Patch(ErrorLog, Defaults(ErrorLog), {Title: FirstError.Message, ControlName: FirstError.Source });
+        Notify(FirstError.Message, NotificationType.Error);
+    OnStart: |
+        =ClearCollect(
+            CurrentRoles,
+            ForAll(
+                Filter(
+                    UserRole,
+                    UserAccess.Email = User().Email
+                ),
+                {CurrentRole: RoleID.Value}
+            )
+        );
+        ClearCollect(
+            CurrentPermission,
+            ShowColumns(
+                ForAll(
+                    Filter(
+                        RolePermission,
+                        RoleID.Value = Last(
+                            FirstN(
+                                CurrentRoles,
+                                1
+                            )
+                        ).CurrentRole || RoleID.Value = Last(
+                            FirstN(
+                                CurrentRoles,
+                                2
+                            )
+                        ).CurrentRole || RoleID.Value = Last(
+                            FirstN(
+                                CurrentRoles,
+                                3
+                            )
+                        ).CurrentRole || RoleID.Value = Last(
+                            FirstN(
+                                CurrentRoles,
+                                4
+                            )
+                        ).CurrentRole || RoleID.Value = Last(
+                            FirstN(
+                                CurrentRoles,
+                                5
+                            )
+                        ).CurrentRole || RoleID.Value = Last(
+                            FirstN(
+                                CurrentRoles,
+                                6
+                            )
+                        ).CurrentRole
+                    ),
+                    {
+                        Screen: 'PermissionID: Title'.Value,
+                        Claim: 'PermissionID: Category'.Value
+                    }
+                ),
+                Screen,
+                Claim
+            )
+        );
+        
+        Clear(ColMonthYear);
+        
+        ForAll(
+            Sequence(
+                50,
+                2000
+            ) As SourceYear,
+            ForAll(
+                Sequence(12),
+                Collect(
+                    ColMonthYear,
+                    {
+                        Month: Value,
+                        MonthYear: Concatenate(
+                            Last(
+                                FirstN(
+                                    Calendar.MonthsShort(),
+                                    Value
+                                )
+                            ).Value,
+                            "-",
+                            SourceYear.Value
+                        ),
+                        Year: SourceYear.Value,
+                        FullDate: Date(
+                            SourceYear.Value,
+                            Value,
+                            1
+                        ),
+                        EndDate:  DateAdd(
+                            Date(SourceYear.Value, Value, 1),
+                            DateDiff(Date(SourceYear.Value, Value, 1),
+                            DateAdd(Date(SourceYear.Value, Value + 1, 1), -1, TimeUnit.Days)),
+                            TimeUnit.Days)
+                    }
+                )
+            )
+        );
+    StartScreen: |-
+        =With(
+            {
+                IsUser: Filter(
+                    UserRole,
+                    UserAccess.Email = User().Email
+                )
+            },
+            If(
+                CountRows(IsUser) = 0,
+                ScreenUnauthorized,
+                CountRows(IsUser) > 0,
+                ScreenFinanceByDu
+            )
+        )
+    Theme: =BudgetControlTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
